@@ -1,0 +1,625 @@
+
+
+<div id="mortgage-calculator-section" class="section full-width mortgage-calculator-wrapper" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 60px 0; margin: 40px 0;">
+  <div class="container">
+    <div class="row">
+      <!-- Title -->
+      <div class="col-xs-12">
+        <h2 class="section-title text-center m-b-3" style="color: #2c3e50; font-weight: 700;">
+          💰 Mortgage Calculator
+        </h2>
+        <p class="text-center m-b-3" style="color: #555; font-size: 14px;">
+          Estimate your monthly payments based on loan amount, interest rate, and loan term
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Calculator Form -->
+      <div class="col-xs-12 col-md-6">
+        <div class="mortgage-calc-form" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);">
+          
+          <!-- Property Price -->
+          <div class="calc-field m-b-2" style="margin-bottom: 25px;">
+            <label for="mortgage-price" style="display: block; font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 14px;">
+              Property Price
+            </label>
+            <div style="display: flex; align-items: center; gap: 5px;">
+              <span style="font-size: 18px; color: #27ae60; font-weight: bold;">$</span>
+              <input 
+                type="number" 
+                id="mortgage-price" 
+                class="mortgage-input" 
+                placeholder="450,000" 
+                value="450000"
+                style="flex: 1; padding: 12px 15px; border: 2px solid #ecf0f1; border-radius: 6px; font-size: 14px; transition: border-color 0.3s; background: #f9f9f9;"
+              />
+            </div>
+            <input 
+              type="range" 
+              id="mortgage-price-slider" 
+              class="mortgage-slider" 
+              min="50000" 
+              max="2000000" 
+              step="10000" 
+              value="450000"
+              style="width: 100%; margin-top: 10px; cursor: pointer;"
+            />
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #7f8c8d; margin-top: 5px;">
+              <span>$50K</span>
+              <span>$2M</span>
+            </div>
+          </div>
+
+          <!-- Down Payment -->
+          <div class="calc-field m-b-2" style="margin-bottom: 25px;">
+            <label for="mortgage-down-payment" style="display: block; font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 14px;">
+              Down Payment
+            </label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 5px; flex: 1;">
+                <span style="font-size: 18px; color: #27ae60; font-weight: bold;">$</span>
+                <input 
+                  type="number" 
+                  id="mortgage-down-payment" 
+                  class="mortgage-input" 
+                  placeholder="90,000" 
+                  value="90000"
+                  style="flex: 1; padding: 12px 15px; border: 2px solid #ecf0f1; border-radius: 6px; font-size: 14px; background: #f9f9f9;"
+                />
+              </div>
+              <div style="display: flex; align-items: center; gap: 5px; flex: 0.6;">
+                <input 
+                  type="number" 
+                  id="mortgage-down-percent" 
+                  class="mortgage-input" 
+                  placeholder="20" 
+                  value="20"
+                  min="0"
+                  max="100"
+                  style="flex: 1; padding: 12px 10px; border: 2px solid #ecf0f1; border-radius: 6px; font-size: 14px; background: #f9f9f9;"
+                />
+                <span style="font-weight: bold; color: #2c3e50;">%</span>
+              </div>
+            </div>
+            <input 
+              type="range" 
+              id="mortgage-down-percent-slider" 
+              class="mortgage-slider" 
+              min="0" 
+              max="50" 
+              step="1" 
+              value="20"
+              style="width: 100%; margin-top: 10px; cursor: pointer;"
+            />
+          </div>
+
+          <!-- Loan Amount (Auto-calculated) -->
+          <div class="calc-field m-b-2" style="margin-bottom: 25px; padding: 15px; background: #ecf0f1; border-radius: 6px;">
+            <label style="display: block; font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 14px;">
+              Loan Amount
+            </label>
+            <div style="font-size: 24px; color: #27ae60; font-weight: bold;">
+              $<span id="mortgage-loan-amount">360,000</span>
+            </div>
+          </div>
+
+          <!-- Interest Rate -->
+          <div class="calc-field m-b-2" style="margin-bottom: 25px;">
+            <label for="mortgage-rate" style="display: block; font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 14px;">
+              Interest Rate (%)
+            </label>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <input 
+                type="number" 
+                id="mortgage-rate" 
+                class="mortgage-input" 
+                placeholder="6.5" 
+                value="6.5"
+                step="0.1"
+                min="0"
+                max="15"
+                style="flex: 1; padding: 12px 15px; border: 2px solid #ecf0f1; border-radius: 6px; font-size: 14px; background: #f9f9f9;"
+              />
+              <span style="font-weight: bold; color: #2c3e50;">%</span>
+            </div>
+            <input 
+              type="range" 
+              id="mortgage-rate-slider" 
+              class="mortgage-slider" 
+              min="0" 
+              max="15" 
+              step="0.1" 
+              value="6.5"
+              style="width: 100%; margin-top: 10px; cursor: pointer;"
+            />
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #7f8c8d; margin-top: 5px;">
+              <span>0%</span>
+              <span>15%</span>
+            </div>
+          </div>
+
+          <!-- Loan Term -->
+          <div class="calc-field m-b-2" style="margin-bottom: 25px;">
+            <label for="mortgage-term" style="display: block; font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 14px;">
+              Loan Term (Years)
+            </label>
+            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+              <button 
+                class="mortgage-term-btn" 
+                data-term="15"
+                style="flex: 1; padding: 10px; border: 2px solid #bdc3c7; background: white; border-radius: 6px; cursor: pointer; font-weight: 600; color: #2c3e50; transition: all 0.3s;"
+              >
+                15 Years
+              </button>
+              <button 
+                class="mortgage-term-btn active" 
+                data-term="30"
+                style="flex: 1; padding: 10px; border: 2px solid #27ae60; background: #27ae60; color: white; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s;"
+              >
+                30 Years
+              </button>
+            </div>
+            <input 
+              type="number" 
+              id="mortgage-term" 
+              class="mortgage-input" 
+              placeholder="30" 
+              value="30"
+              min="5"
+              max="50"
+              style="width: 100%; padding: 12px 15px; border: 2px solid #ecf0f1; border-radius: 6px; font-size: 14px; background: #f9f9f9;"
+            />
+          </div>
+
+          <!-- HOA and Property Tax (Optional) -->
+          <div style="margin-bottom: 20px; padding: 15px; background: #f0f0f0; border-radius: 6px;">
+            <div style="margin-bottom: 12px;">
+              <label for="mortgage-hoa" style="display: block; font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 14px;">
+                Monthly HOA ($)
+              </label>
+              <input 
+                type="number" 
+                id="mortgage-hoa" 
+                class="mortgage-input" 
+                placeholder="0" 
+                value="0"
+                min="0"
+                style="width: 100%; padding: 12px 15px; border: 2px solid #ecf0f1; border-radius: 6px; font-size: 14px; background: white;"
+              />
+            </div>
+            <div>
+              <label for="mortgage-property-tax" style="display: block; font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 14px;">
+                Annual Property Tax ($)
+              </label>
+              <input 
+                type="number" 
+                id="mortgage-property-tax" 
+                class="mortgage-input" 
+                placeholder="0" 
+                value="0"
+                min="0"
+                style="width: 100%; padding: 12px 15px; border: 2px solid #ecf0f1; border-radius: 6px; font-size: 14px; background: white;"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Results and Pie Chart -->
+      <div class="col-xs-12 col-md-6">
+        <!-- Results Box -->
+        <div class="mortgage-results" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); margin-bottom: 20px;">
+          <h3 style="color: #2c3e50; font-size: 18px; font-weight: 700; margin-bottom: 20px; border-bottom: 2px solid #ecf0f1; padding-bottom: 15px;">
+            Monthly Payment Breakdown
+          </h3>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <!-- Principal & Interest -->
+            <div style="padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; color: white;">
+              <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Principal & Interest</div>
+              <div style="font-size: 24px; font-weight: bold;">
+                $<span id="mortgage-pi">2,720</span>
+              </div>
+            </div>
+            
+            <!-- Property Tax -->
+            <div style="padding: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 8px; color: white;">
+              <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Property Tax</div>
+              <div style="font-size: 24px; font-weight: bold;">
+                $<span id="mortgage-tax">0</span>
+              </div>
+            </div>
+            
+            <!-- HOA -->
+            <div style="padding: 15px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 8px; color: white;">
+              <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">HOA Fee</div>
+              <div style="font-size: 24px; font-weight: bold;">
+                $<span id="mortgage-hoa-display">0</span>
+              </div>
+            </div>
+            
+            <!-- Total Monthly -->
+            <div style="padding: 15px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); border-radius: 8px; color: white;">
+              <div style="font-size: 12px; opacity: 0.9; margin-bottom: 5px;">Total Monthly</div>
+              <div style="font-size: 24px; font-weight: bold;">
+                $<span id="mortgage-total-monthly">2,720</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary Stats -->
+          <div style="padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #27ae60;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 13px;">
+              <div>
+                <span style="color: #7f8c8d;">Total Interest Paid:</span>
+                <div style="font-weight: bold; color: #2c3e50; font-size: 16px;">
+                  $<span id="mortgage-total-interest">544,320</span>
+                </div>
+              </div>
+              <div>
+                <span style="color: #7f8c8d;">Total Amount Paid:</span>
+                <div style="font-weight: bold; color: #2c3e50; font-size: 16px;">
+                  $<span id="mortgage-total-paid">904,320</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="mortgage-chart" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);">
+          <h3 style="color: #2c3e50; font-size: 18px; font-weight: 700; margin-bottom: 20px; text-align: center;">
+            Payment Breakdown
+          </h3>
+          <canvas id="mortgage-pie-chart" width="300" height="300" style="max-width: 100%; height: auto; display: block; margin: 0 auto;"></canvas>
+          <div id="mortgage-chart-legend" style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 13px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mortgage Calculator JavaScript -->
+<script>
+(function() {
+  'use strict';
+  
+  console.log('[Loading] Mortgage Calculator...');
+
+  // Canvas context for pie chart
+  let chartCanvas = document.getElementById('mortgage-pie-chart');
+  let chartCtx = chartCanvas ? chartCanvas.getContext('2d') : null;
+
+  // Input elements
+  const inputs = {
+    price: document.getElementById('mortgage-price'),
+    downPayment: document.getElementById('mortgage-down-payment'),
+    downPercent: document.getElementById('mortgage-down-percent'),
+    rate: document.getElementById('mortgage-rate'),
+    term: document.getElementById('mortgage-term'),
+    hoa: document.getElementById('mortgage-hoa'),
+    propertyTax: document.getElementById('mortgage-property-tax'),
+    priceSlider: document.getElementById('mortgage-price-slider'),
+    downPercentSlider: document.getElementById('mortgage-down-percent-slider'),
+    rateSlider: document.getElementById('mortgage-rate-slider')
+  };
+
+  // Display elements
+  const displays = {
+    loanAmount: document.getElementById('mortgage-loan-amount'),
+    pi: document.getElementById('mortgage-pi'),
+    tax: document.getElementById('mortgage-tax'),
+    hoaDisplay: document.getElementById('mortgage-hoa-display'),
+    totalMonthly: document.getElementById('mortgage-total-monthly'),
+    totalInterest: document.getElementById('mortgage-total-interest'),
+    totalPaid: document.getElementById('mortgage-total-paid'),
+    chartLegend: document.getElementById('mortgage-chart-legend')
+  };
+
+  // Format currency
+  function formatCurrency(num) {
+    return Math.round(num).toLocaleString('en-US');
+  }
+
+  // Calculate mortgage
+  function calculate() {
+    // Get input values
+    const price = parseFloat(inputs.price.value) || 0;
+    const downPercent = parseFloat(inputs.downPercent.value) || 0;
+    const downPayment = (price * downPercent) / 100;
+    const loanAmount = price - downPayment;
+    const rate = parseFloat(inputs.rate.value) || 0;
+    const term = parseFloat(inputs.term.value) || 30;
+    const hoa = parseFloat(inputs.hoa.value) || 0;
+    const propertyTax = parseFloat(inputs.propertyTax.value) || 0;
+
+    // Update loan amount display
+    displays.loanAmount.textContent = formatCurrency(loanAmount);
+    inputs.downPayment.value = Math.round(downPayment);
+
+    // Calculate monthly P&I
+    const monthlyRate = rate / 100 / 12;
+    const numberOfPayments = term * 12;
+    let monthlyPI = 0;
+
+    if (monthlyRate > 0) {
+      monthlyPI = (loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) / 
+                  (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    } else {
+      monthlyPI = loanAmount / numberOfPayments;
+    }
+
+    // Calculate other monthly costs
+    const monthlyTax = propertyTax / 12;
+    const monthlyHoa = hoa;
+    const totalMonthly = monthlyPI + monthlyTax + monthlyHoa;
+
+    // Calculate total interest
+    const totalPaid = monthlyPI * numberOfPayments;
+    const totalInterest = totalPaid - loanAmount;
+    const totalAmountPaid = totalPaid + (propertyTax * term) + (monthlyHoa * numberOfPayments);
+
+    // Update displays
+    displays.pi.textContent = formatCurrency(monthlyPI);
+    displays.tax.textContent = formatCurrency(monthlyTax);
+    displays.hoaDisplay.textContent = formatCurrency(monthlyHoa);
+    displays.totalMonthly.textContent = formatCurrency(totalMonthly);
+    displays.totalInterest.textContent = formatCurrency(totalInterest);
+    displays.totalPaid.textContent = formatCurrency(totalAmountPaid);
+
+    // Draw pie chart
+    if (chartCtx) {
+      drawPieChart(monthlyPI, monthlyTax, monthlyHoa);
+    }
+
+    // Update chart legend
+    updateChartLegend(monthlyPI, monthlyTax, monthlyHoa, totalMonthly);
+  }
+
+  // Draw pie chart
+  function drawPieChart(pi, tax, hoa) {
+    const total = pi + tax + hoa;
+    const piPercent = (pi / total) * 100;
+    const taxPercent = (tax / total) * 100;
+    const hoaPercent = (hoa / total) * 100;
+
+    const colors = {
+      pi: '#667eea',
+      tax: '#f5576c',
+      hoa: '#00f2fe'
+    };
+
+    const size = Math.min(chartCanvas.width, chartCanvas.height) / 2;
+    const centerX = chartCanvas.width / 2;
+    const centerY = chartCanvas.height / 2;
+
+    // Clear canvas
+    chartCtx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+
+    // Draw pie slices
+    let currentAngle = -Math.PI / 2;
+
+    // Principal & Interest
+    const piAngle = (piPercent / 100) * 2 * Math.PI;
+    drawSlice(chartCtx, centerX, centerY, size, currentAngle, currentAngle + piAngle, colors.pi);
+    currentAngle += piAngle;
+
+    // Property Tax
+    const taxAngle = (taxPercent / 100) * 2 * Math.PI;
+    drawSlice(chartCtx, centerX, centerY, size, currentAngle, currentAngle + taxAngle, colors.tax);
+    currentAngle += taxAngle;
+
+    // HOA
+    const hoaAngle = (hoaPercent / 100) * 2 * Math.PI;
+    drawSlice(chartCtx, centerX, centerY, size, currentAngle, currentAngle + hoaAngle, colors.hoa);
+
+    // Draw center text
+    chartCtx.fillStyle = '#2c3e50';
+    chartCtx.font = 'bold 16px Arial';
+    chartCtx.textAlign = 'center';
+    chartCtx.textBaseline = 'middle';
+    chartCtx.fillText('Monthly', centerX, centerY - 8);
+    chartCtx.fillText('Payment', centerX, centerY + 8);
+  }
+
+  // Draw pie slice
+  function drawSlice(ctx, centerX, centerY, size, startAngle, endAngle, color) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.arc(centerX, centerY, size, startAngle, endAngle);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  // Update chart legend
+  function updateChartLegend(pi, tax, hoa, total) {
+    const piPercent = total > 0 ? ((pi / total) * 100).toFixed(1) : 0;
+    const taxPercent = total > 0 ? ((tax / total) * 100).toFixed(1) : 0;
+    const hoaPercent = total > 0 ? ((hoa / total) * 100).toFixed(1) : 0;
+
+    displays.chartLegend.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="width: 16px; height: 16px; background: #667eea; border-radius: 3px;"></div>
+        <span>P&I: $${formatCurrency(pi)} (${piPercent}%)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="width: 16px; height: 16px; background: #f5576c; border-radius: 3px;"></div>
+        <span>Tax: $${formatCurrency(tax)} (${taxPercent}%)</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div style="width: 16px; height: 16px; background: #00f2fe; border-radius: 3px;"></div>
+        <span>HOA: $${formatCurrency(hoa)} (${hoaPercent}%)</span>
+      </div>
+    `;
+  }
+
+  // Event listeners
+  if (inputs.price) {
+    inputs.price.addEventListener('input', () => {
+      inputs.priceSlider.value = inputs.price.value;
+      calculate();
+    });
+  }
+
+  if (inputs.priceSlider) {
+    inputs.priceSlider.addEventListener('input', () => {
+      inputs.price.value = inputs.priceSlider.value;
+      calculate();
+    });
+  }
+
+  if (inputs.downPercent) {
+    inputs.downPercent.addEventListener('input', () => {
+      inputs.downPercentSlider.value = inputs.downPercent.value;
+      calculate();
+    });
+  }
+
+  if (inputs.downPercentSlider) {
+    inputs.downPercentSlider.addEventListener('input', () => {
+      inputs.downPercent.value = inputs.downPercentSlider.value;
+      calculate();
+    });
+  }
+
+  if (inputs.downPayment) {
+    inputs.downPayment.addEventListener('input', () => {
+      const price = parseFloat(inputs.price.value) || 0;
+      const downPayment = parseFloat(inputs.downPayment.value) || 0;
+      const percent = (downPayment / price * 100).toFixed(1);
+      inputs.downPercent.value = percent;
+      inputs.downPercentSlider.value = percent;
+      calculate();
+    });
+  }
+
+  if (inputs.rate) {
+    inputs.rate.addEventListener('input', () => {
+      inputs.rateSlider.value = inputs.rate.value;
+      calculate();
+    });
+  }
+
+  if (inputs.rateSlider) {
+    inputs.rateSlider.addEventListener('input', () => {
+      inputs.rate.value = inputs.rateSlider.value;
+      calculate();
+    });
+  }
+
+  if (inputs.term) {
+    inputs.term.addEventListener('input', calculate);
+  }
+
+  if (inputs.hoa) {
+    inputs.hoa.addEventListener('input', calculate);
+  }
+
+  if (inputs.propertyTax) {
+    inputs.propertyTax.addEventListener('input', calculate);
+  }
+
+  // Term buttons
+  document.querySelectorAll('.mortgage-term-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.mortgage-term-btn').forEach(b => {
+        b.style.border = '2px solid #bdc3c7';
+        b.style.background = 'white';
+        b.style.color = '#2c3e50';
+      });
+      this.style.border = '2px solid #27ae60';
+      this.style.background = '#27ae60';
+      this.style.color = 'white';
+      
+      inputs.term.value = this.getAttribute('data-term');
+      calculate();
+    });
+  });
+
+  // Initial calculation
+  calculate();
+  console.log('[✓] Mortgage Calculator loaded');
+})();
+</script>
+
+<!-- Mortgage Calculator Styles -->
+<style>
+.mortgage-calculator-wrapper {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.mortgage-input {
+  transition: all 0.3s ease;
+}
+
+.mortgage-input:focus {
+  outline: none !important;
+  border-color: #27ae60 !important;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1) !important;
+}
+
+.mortgage-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(to right, #ecf0f1 0%, #27ae60 50%, #ecf0f1 100%);
+  height: 6px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.mortgage-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #27ae60;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+}
+
+.mortgage-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.mortgage-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #27ae60;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border: none;
+  transition: all 0.2s;
+}
+
+.mortgage-slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.mortgage-term-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .mortgage-calculator-wrapper {
+    padding: 30px 0 !important;
+  }
+
+  .mortgage-calc-form,
+  .mortgage-results,
+  .mortgage-chart {
+    margin-bottom: 20px;
+  }
+}
+</style>

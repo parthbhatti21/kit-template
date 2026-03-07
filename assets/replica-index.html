@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Property Showcase</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Mortgage Calculator CSS -->
+  <link rel="stylesheet" href="mortgage-calculator.css">
+  
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Lato', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background: white;
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    .row { display: flex; flex-wrap: wrap; margin: 0 -15px; }
+    .col-xs-12 { flex: 0 0 100%; padding: 0 15px; }
+    .col-md-5 { flex: 0 0 41.666%; padding: 0 15px; }
+    .col-md-7 { flex: 0 0 58.333%; padding: 0 15px; }
+    .col-md-6 { flex: 0 0 50%; padding: 0 15px; }
+    .col-md-3 { flex: 0 0 25%; padding: 0 15px; }
+    .col-md-4 { flex: 0 0 33.333%; padding: 0 15px; }
+    
+    /* Header/Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px 0;
+    }
+    
+    nav { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 13px;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #c0b281; }
+    
+    /* Spacing */
+    .p-x-2 { padding: 0 20px; }
+    .p-y-2 { padding: 20px 0; }
+    .m-y-2 { margin: 20px 0; }
+    .m-y-4 { margin: 40px 0; }
+    .m-t-2 { margin-top: 20px; }
+    .m-b-3 { margin-bottom: 30px; }
+    .m-r-1 { margin-right: 10px; }
+    .m-l-1 { margin-left: 10px; }
+    .p-l-0 { padding-left: 0; }
+    .p-b-1 { padding-bottom: 10px; }
+    .pull-left { float: left; }
+    .full-width { width: 100%; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
+    .text-black { color: black; }
+    .d-block { display: block; }
+    .pos-r { position: relative; }
+    .center-block { margin-left: auto; margin-right: auto; }
+    .max-width-1400 { max-width: 1400px; }
+    
+    /* Section */
+    .section {
+      padding: 60px 0;
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 40px;
+      line-height: 1.3;
+    }
+    
+    .section-details {
+      background: white;
+      padding: 80px 0;
+    }
+    
+    /* Overview */
+    .arrow-mask-wrap { margin-bottom: 30px; }
+    .overview-extras { margin: 30px 0; }
+    .extras-wrapper { list-style: none; display: flex; gap: 20px; }
+    .extra-item a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #c0b281;
+      font-weight: 700;
+      transition: transform 0.3s;
+    }
+    .extra-item a:hover { transform: translateY(-5px); }
+    .dl-extra-icon { font-size: 24px; margin-bottom: 10px; }
+    .link-title { font-size: 12px; text-transform: uppercase; }
+    
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #123149;
+      color: white;
+      text-decoration: none;
+      border: 2px solid #123149;
+      border-radius: 0;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Lato', sans-serif;
+    }
+    
+    .btn:hover {
+      background: #c0b281;
+      border-color: #c0b281;
+      color: white;
+    }
+    
+    .btn-lg { padding: 14px 32px; }
+    .btn-default { background: white; color: #333; border-color: #333; }
+    .btn-default:hover { background: #333; color: white; }
+    .btn-cta-contact { margin-right: 10px; }
+    
+    .top-cta-wrap { display: flex; gap: 15px; flex-wrap: wrap; }
+    
+    /* Property Description */
+    .property-description {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #666;
+    }
+    
+    .more-link {
+      background: none;
+      border: none;
+      color: #c0b281;
+      cursor: pointer;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    
+    /* Amenities */
+    .amenities-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .amenity-item {
+      text-align: center;
+      padding: 20px;
+      background: #f9f8f6;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+    .amenity-item:hover { transform: translateY(-5px); }
+    .amenity-icon { font-size: 32px; margin-bottom: 10px; }
+    .amenity-title { font-weight: 700; color: #333; margin: 10px 0; }
+    .amenity-text { font-size: 13px; color: #999; }
+    
+    /* Photos */
+    .photo-wrap { background: #f9f8f6; padding: 80px 0; }
+    .photo-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .photo-item img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.3s; }
+    .photo-item img:hover { transform: scale(1.05); }
+    
+    /* Map */
+    .map-container { height: 400px; border-radius: 8px; overflow: hidden; }
+    
+    /* Contact */
+    .property-contacts-2 { background: #f9f8f6; padding: 80px 0; }
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+    .contact-item { text-align: center; }
+    .contact-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 15px; color: #333; }
+    .contact-item p { color: #666; }
+    
+    /* Mortgage Calculator */
+    .mortgage-calculator-wrapper { background: #f6f1e9; padding: 80px 0; }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .col-md-5, .col-md-7 { flex: 0 0 100%; }
+      .col-md-6 { flex: 0 0 100%; }
+      .col-md-3 { flex: 0 0 50%; }
+      .col-md-4 { flex: 0 0 100%; }
+      
+      nav { gap: 15px; }
+      .section-title { font-size: 32px; }
+      .amenities-content { grid-template-columns: repeat(2, 1fr); }
+      .photo-gallery { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .top-cta-wrap { flex-direction: column; }
+      .btn-cta-contact { margin-right: 0; margin-bottom: 10px; }
+    }
+    
+    @media (max-width: 480px) {
+      .amenities-content { grid-template-columns: 1fr; }
+      .photo-gallery { grid-template-columns: 1fr; }
+      .section-title { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header Navigation -->
+<header>
+  <nav class="container">
+    <a href="#overview">Overview</a>
+    <a href="#amenities">Amenities</a>
+    <a href="#photos">Photos</a>
+    <a href="#media">Media</a>
+    <a href="#map">Map</a>
+    <a href="#contact">Contact</a>
+    <a href="#mortgage">Mortgage</a>
+  </nav>
+</header>
+
+<!-- Overview Section -->
+<div id="overview" class="section container section-details">
+  <div class="row">
+    <div class="col-xs-12 col-md-5">
+      <div id="arrow-overview" class="arrow-mask-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94.33 17.9" width="100" height="20">
+          <polyline points="84.59 0.37 93.6 8.57 84.59 17.55" fill="none" stroke="#333" stroke-width="2"/>
+          <line x1="0" y1="8.57" x2="93.6" y2="8.57" stroke="#333" stroke-width="2"/>
+        </svg>
+      </div>
+      <h2 class="section-title">About<br>the Property</h2>
+      <div class="overview-extras">
+        <ul class="extras-wrapper">
+          <li class="extra-item">
+            <a href="#">
+              <span class="dl-extra-icon">📥</span>
+              <div class="link-title">Brochure</div>
+            </a>
+          </li>
+          <li class="extra-item">
+            <a href="#">
+              <span class="dl-extra-icon">📄</span>
+              <div class="link-title">Documents</div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="top-cta-wrap m-y-4 full-width">
+        <a href="#contact" class="btn btn-lg btn-default">Get in Touch</a>
+        <a href="#" class="btn btn-lg btn-default"><i class="fa fa-calendar-o"></i> Schedule Tour</a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-7">
+      <div class="property-description">
+        <p>Discover this stunning property featuring breathtaking ocean views, modern amenities, and exceptional design. Perfect for those seeking a luxurious coastal lifestyle with world-class architecture and premium finishes throughout.</p>
+        <p style="margin-top: 15px;">Located in a prestigious neighborhood with easy access to dining, shopping, and entertainment. This property represents the pinnacle of luxury real estate.</p>
+        <button class="more-link p-l-0 full-width text-left m-t-2">Read More →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Amenities Section -->
+<div id="amenities" class="section container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="section-title text-right">Features &<br>Amenities</h2>
+    </div>
+  </div>
+  <div class="amenities-content">
+    <div class="amenity-item">
+      <div class="amenity-icon">🏊</div>
+      <div class="amenity-title">Swimming Pool</div>
+      <div class="amenity-text">Olympic-sized heated pool with spa</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-icon">🎾</div>
+      <div class="amenity-title">Tennis Courts</div>
+      <div class="amenity-text">Professional-grade facilities</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-icon">🏋️</div>
+      <div class="amenity-title">Fitness Center</div>
+      <div class="amenity-text">State-of-the-art gym equipment</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-icon">🌳</div>
+      <div class="amenity-title">Landscaping</div>
+      <div class="amenity-text">Professionally maintained gardens</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-icon">🏖️</div>
+      <div class="amenity-title">Beach Access</div>
+      <div class="amenity-text">Direct private beach access</div>
+    </div>
+    <div class="amenity-item">
+      <div class="amenity-icon">🚗</div>
+      <div class="amenity-title">Parking</div>
+      <div class="amenity-text">Secure covered parking</div>
+    </div>
+  </div>
+</div>
+
+<!-- Photos Section -->
+<div id="photos" class="section photo-wrap pos-r">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="section-title">Photo<br>Gallery</h2>
+      </div>
+    </div>
+    <div class="photo-gallery">
+      <div class="photo-item"><img src="@assets/images/adobestock_272168413.jpeg" alt="Living Room"></div>
+      <div class="photo-item"><img src="@assets/images/light_int_adobestock_451880784.jpeg" alt="Bedroom"></div>
+      <div class="photo-item"><img src="@assets/images/adobestock_178798998.jpg" alt="Kitchen"></div>
+      <div class="photo-item"><img src="@assets/images/adobestock_178800354.jpg" alt="Bathroom"></div>
+      <div class="photo-item"><img src="@assets/images/apartment-bed-bedroom-comfort-545034.jpg" alt="Bedroom 2"></div>
+      <div class="photo-item"><img src="@assets/images/bathroom-interior-1457847.jpg" alt="Spa"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Media/Showcase Section -->
+<div id="showcase" class="section d-block pos-r">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="section-title text-right">Media</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="vtour" style="background: #f0f0f0; height: 500px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">
+          <div style="text-align: center;">
+            <p style="font-size: 18px; margin-bottom: 20px;">3D Virtual Tour</p>
+            <iframe title="3D Virtual Tour" style="width: 100%; height: 100%; border: none; border-radius: 8px;" src="about:blank"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Map Section -->
+<div id="map" class="section full-width d-block m-t-2 pos-r">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="section-title m-b-3">Location</h2>
+      </div>
+    </div>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354625225426!2d144.95373531562508!3d-37.8162079970876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf00ef62049ee50!2sFlinders%20Street%20Station!5e0!3m2!1sen!2sau!4v1234567890" width="100%" height="100%" style="border:none;border-radius:8px;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Section -->
+<div id="contact" class="section mls-hide pos-r property-contacts-2 max-width-1400 p-x-2 full-width d-block center-block m-y-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="section-title pull-left col-xs-12 col-md-6">Contact Information</h2>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <h3>📞 Phone</h3>
+        <p>+1 (555) 123-4567</p>
+      </div>
+      <div class="contact-item">
+        <h3>📧 Email</h3>
+        <p>info@property.com</p>
+      </div>
+      <div class="contact-item">
+        <h3>📍 Address</h3>
+        <p>123 Oceanview Drive<br>Coastal City, CA 12345</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="#" class="btn btn-lg btn-default">Get More Information</a>
+    </div>
+  </div>
+</div>
+
+<!-- Mortgage Calculator Section -->
+<div id="mortgage-calculator-section" class="section full-width mortgage-calculator-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="section-heading">
+          <h2 class="section-heading-title">
+            Mortgage Calculator
+          </h2>
+          <div class="section-heading-divider"></div>
+          <p class="section-heading-subtitle">
+            Explore your monthly payments in real-time. Adjust loan terms, down payment, and interest rates to find what works best for your budget.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mortgage-calc-grid">
+      <!-- LEFT COLUMN: INPUTS -->
+      <div class="mortgage-panel calc-inputs-panel">
+        <h3 class="mortgage-panel-title">
+          <span class="mortgage-panel-title-bar"></span>
+          Loan Details
+        </h3>
+
+        <!-- Property Price -->
+        <div class="mortgage-field">
+          <label for="mortgage-price" class="mortgage-field-label">
+            💰 Property Price
+          </label>
+          <div class="mortgage-input-row">
+            <span class="mortgage-input-prefix">$</span>
+            <input
+              type="number"
+              id="mortgage-price"
+              class="mortgage-input-premium"
+              placeholder="450,000"
+              value="450000"
+            />
+          </div>
+          <input
+            type="range"
+            id="mortgage-price-slider"
+            class="mortgage-slider-premium"
+            min="50000"
+            max="2000000"
+            step="10000"
+            value="450000"
+          />
+          <div class="mortgage-slider-scale">
+            <span>$50K</span>
+            <span>$2M</span>
+          </div>
+        </div>
+
+        <!-- Down Payment -->
+        <div class="mortgage-field">
+          <label class="mortgage-field-label">
+            🏠 Down Payment
+          </label>
+          <div class="mortgage-down-row">
+            <div class="mortgage-input-row">
+              <span class="mortgage-input-prefix">$</span>
+              <input
+                type="number"
+                id="mortgage-down-payment"
+                class="mortgage-input-premium"
+                placeholder="90,000"
+                value="90000"
+              />
+            </div>
+            <div class="mortgage-input-row">
+              <input
+                type="number"
+                id="mortgage-down-percent"
+                class="mortgage-input-premium mortgage-input-premium--small"
+                placeholder="20"
+                value="20"
+                min="0"
+                max="100"
+              />
+              <span class="mortgage-input-prefix">%</span>
+            </div>
+          </div>
+          <input
+            type="range"
+            id="mortgage-down-percent-slider"
+            class="mortgage-slider-premium"
+            min="0"
+            max="50"
+            step="1"
+            value="20"
+          />
+        </div>
+
+        <!-- Interest Rate -->
+        <div class="mortgage-field">
+          <label for="mortgage-rate" class="mortgage-field-label">
+            📊 Interest Rate (%)
+          </label>
+          <div class="mortgage-input-row">
+            <input
+              type="number"
+              id="mortgage-rate"
+              class="mortgage-input-premium"
+              placeholder="6.5"
+              value="6.5"
+              step="0.1"
+              min="0.1"
+              max="15"
+            />
+            <span class="mortgage-input-prefix">%</span>
+          </div>
+          <input
+            type="range"
+            id="mortgage-rate-slider"
+            class="mortgage-slider-premium"
+            min="0.1"
+            max="15"
+            step="0.1"
+            value="6.5"
+          />
+        </div>
+
+        <!-- Loan Term -->
+        <div class="mortgage-field">
+          <label class="mortgage-field-label">
+            ⏱️ Loan Term
+          </label>
+          <div class="mortgage-term-buttons">
+            <button class="mortgage-term-btn-premium" data-term="15">
+              15 Yrs
+            </button>
+            <button class="mortgage-term-btn-premium active" data-term="30">
+              30 Yrs
+            </button>
+          </div>
+          <input
+            type="number"
+            id="mortgage-term"
+            class="mortgage-input-premium"
+            placeholder="30"
+            value="30"
+            min="5"
+            max="50"
+          />
+        </div>
+
+        <!-- Additional Costs -->
+        <div class="mortgage-additional-costs">
+          <label class="mortgage-field-label subtitle">
+            ➕ Additional Monthly Costs (Optional)
+          </label>
+
+          <div class="mortgage-additional-row">
+            <label for="mortgage-hoa" class="mortgage-additional-label">
+              HOA Fees
+            </label>
+            <div class="mortgage-input-row">
+              <span class="mortgage-additional-prefix">$</span>
+              <input
+                type="number"
+                id="mortgage-hoa"
+                class="mortgage-input-premium"
+                placeholder="0"
+                value="0"
+                min="0"
+              />
+            </div>
+          </div>
+
+          <div class="mortgage-additional-row">
+            <label for="mortgage-property-tax" class="mortgage-additional-label">
+              Annual Property Tax
+            </label>
+            <div class="mortgage-input-row">
+              <span class="mortgage-additional-prefix">$</span>
+              <input
+                type="number"
+                id="mortgage-property-tax"
+                class="mortgage-input-premium"
+                placeholder="0"
+                value="0"
+                min="0"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MIDDLE COLUMN: RESULTS -->
+      <div class="mortgage-panel calc-results-panel">
+        <h3 class="mortgage-panel-title">
+          <span class="mortgage-panel-title-bar"></span>
+          Payment Summary
+        </h3>
+
+        <div class="mortgage-section">
+          <div class="mortgage-section-caption">
+            Loan Amount
+          </div>
+          <div class="mortgage-section-value">
+            $<span id="mortgage-loan-amount">360,000</span>
+          </div>
+        </div>
+
+        <div class="mortgage-main-payment">
+          <div class="mortgage-main-payment-label">
+            Monthly Payment
+          </div>
+          <div class="mortgage-main-payment-value">
+            $<span id="mortgage-total-monthly">2,720</span>
+          </div>
+        </div>
+
+        <div class="mortgage-breakdown">
+          <div class="mortgage-breakdown-heading">
+            Payment Breakdown
+          </div>
+          <div class="mortgage-breakdown-list">
+            <div class="mortgage-breakdown-item">
+              <span class="mortgage-breakdown-label">Principal &amp; Interest</span>
+              <span class="mortgage-breakdown-amount">
+                $<span id="mortgage-pi">2,720</span>
+              </span>
+            </div>
+
+            <div class="mortgage-breakdown-item">
+              <span class="mortgage-breakdown-label">Tax &amp; HOA</span>
+              <span class="mortgage-breakdown-amount">
+                $<span id="mortgage-other-costs">0</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mortgage-summary">
+          <div class="mortgage-summary-row">
+            <span class="mortgage-summary-label">Total Interest</span>
+            <span class="mortgage-summary-amount mortgage-summary-amount--interest">
+              $<span id="mortgage-total-interest">544,320</span>
+            </span>
+          </div>
+          <div class="mortgage-summary-row">
+            <span class="mortgage-summary-label">Total Paid</span>
+            <span class="mortgage-summary-amount mortgage-summary-amount--total">
+              $<span id="mortgage-total-paid">904,320</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: PIE CHART -->
+      <div class="mortgage-panel calc-chart-panel">
+        <div class="mortgage-chart-header">
+          <h3 class="mortgage-chart-title">
+            <span class="mortgage-panel-title-bar"></span>
+            Monthly Cost
+          </h3>
+        </div>
+
+        <div class="mortgage-chart-canvas-wrap">
+          <canvas
+            id="mortgage-pie-chart"
+            width="280"
+            height="280"
+          ></canvas>
+        </div>
+
+        <div id="mortgage-chart-legend" class="mortgage-legend"></div>
+      </div>
+    </div>
+
+    <div class="mortgage-cta-row">
+      <button class="mortgage-cta-btn mortgage-cta-btn--outline">
+        📋 Save Calculation
+      </button>
+      <button class="mortgage-cta-btn mortgage-cta-btn--primary">
+        📞 Get Pre-Qualified
+      </button>
+    </div>
+  </div>
+</div>
+<!-- Mortgage Calculator JavaScript - Enhanced & Optimized -->
+<script src="mortgage-calculator.js" defer></script>
+
+
+<h2 class="section-title full-width text-center m-b-3 ">Get in touch</h2>
+    <style>.form-item-confirm-details{position:absolute;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0}.form-item-confirm-details input{background:transparent;border:none}</style>
+<div class="max-width-700 center-block load-property-form">
+<div id="buyer_lead_node_form_wrapper">
+<form class="node-form node-buyer_lead-form form-ph static-form" pnid="83661131" id="property-lead-form" accept-charset="UTF-8">
+  <div>
+  <div class="field-type-text field-name-field-lead-first-name field-widget-text-textfield form-wrapper form-group" id="edit-field-lead-first-name"><div class="form-type-textfield form-item-field-lead-first-name-und-0-value form-item form-group">
+  <label for="edit-field-lead-first-name-und-0-value">First Name <span class="form-required" title="This field is required.">*</span></label>
+ <input class="text-full form-control form-text required" placeholder="First*" type="text" id="edit-field-lead-first-name-und-0-value" name="field_lead_first_name[und][0][value]" value="" size="60" maxlength="255">
+</div>
+</div><div class="field-type-text field-name-field-lead-last-name field-widget-text-textfield form-wrapper form-group" id="edit-field-lead-last-name"><div class="form-type-textfield form-item-field-lead-last-name-und-0-value form-item form-group">
+  <label for="edit-field-lead-last-name-und-0-value">Last Name <span class="form-required" title="This field is required.">*</span></label>
+ <input class="text-full form-control form-text required" placeholder="Last*" type="text" id="edit-field-lead-last-name-und-0-value" name="field_lead_last_name[und][0][value]" value="" size="60" maxlength="255">
+</div>
+</div><div class="form-item-confirm-details" aria-hidden="true"><label class="visually-hidden" for="website_url">Website</label><input type="text" name="website" id="website_url" value="" autocomplete="off" tabindex="-1"></div><div class="field-type-email field-name-field-lead-email field-widget-email-textfield form-wrapper form-group" id="edit-field-lead-email"><div class="text-full-wrapper"><div class="form-type-textfield form-item-field-lead-email-und-0-email form-item form-group">
+  <label for="edit-field-lead-email-und-0-email">Email <span class="form-required" title="This field is required.">*</span></label>
+ <input placeholder="Email*" class="form-control form-text required" type="text" id="edit-field-lead-email-und-0-email" name="field_lead_email[und][0][email]" value="" size="60" maxlength="128">
+</div>
+</div></div><div class="field-type-text field-name-field-lead-phone field-widget-text-textfield form-wrapper form-group" id="edit-field-lead-phone"><div class="form-type-textfield form-item-field-lead-phone-und-0-value form-item form-group">
+  <label for="edit-field-lead-phone-und-0-value">Phone <span class="form-required" title="This field is required.">*</span></label>
+ <input class="text-full clear-text form-control form-text required processed grey-text" placeholder="Phone #" type="text" id="edit-field-lead-phone-und-0-value" name="field_lead_phone[und][0][value]" value="" size="60" maxlength="255">
+</div>
+</div><div class="field-type-text-long field-name-field-lead-comment field-widget-text-textarea form-wrapper form-group" id="edit-field-lead-comment"><div class="form-type-textarea form-item-field-lead-comment-und-0-value form-item form-group">
+  <label for="edit-field-lead-comment-und-0-value">Comment <span class="form-required" title="This field is required.">*</span></label>
+ <div class="form-textarea-wrapper resizable textarea-processed resizable-textarea"><textarea class="text-full form-control form-textarea required" placeholder="Your Message" id="edit-field-lead-comment-und-0-value" name="field_lead_comment[und][0][value]" cols="60" rows="5"></textarea><div class="grippie"></div></div>
+</div>
+</div><div class="form-actions form-wrapper form-group" id="edit-actions"><button type="submit" class="btn btn-default form-submit" id="edit-submit">Send Inquiry</button>
+</div></div>
+</form>
+</div>
+</div>
+  </div>
+</div>
+
+<div id="bottom" class="full-width pull-left d-inline-block pos-r njmls-hide">
+    <div class="cut"></div>
+  <div class="inner p-t-2 pos-r container font-serif">
+    <div class="address-logo-wrap">
+      <div class="col-xs-12 col-md-6">
+      <div class="property-address-top"><span class="thoroughfare">1247 Oceanview Drive</span></div>      <div class="property-address-bottom"><span class="locality">Anywhere</span>, <span class="administrative_area">CA</span> <span class="postal_code">92654</span></div>      </div>
+
+      <div class="col-xs-12 col-md-6">
+         <span class="logo pos-r logo-extra mls-hide img-responsive-parent">
+                                    
+<div class="aspect-wide">
+      <div class="field field-name-field-logo field-type-image field-label-hidden">
+    <div class="field-items">
+          <div class="field-item even"><img src="./assets/images/realco-sample-logo-blakc-sm.png" width="200" height="49" alt="" /></div>
+      </div>
+</div>
+  </div>
+
+                      </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section> <!-- /.block -->
+<div id="demo-property-bar" class="hidden-xs hidden-sm">
+<div class="row">
+<div class="col-xs-12 col-sm-4">
+  <div class="m-l-3">
+  <div class="btn-group dropup">
+  <button type="button" class="btn btn-theme-switch text-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <small>Switch Themes</small>
+  <div class="h3 m-a-0 btn-title">Kit<span class="m-l-2 caret"></span></div>
+  </button>
+  <div class="view view-property-examples view-id-property_examples view-display-id-embed_list dropdown-menu view-dom-id-0941a44f3260c07339f665be63c71b3c">
+        
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Syd</a></div>  </div>  </div>
+  <div class="views-row views-row-2 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Mode</a></div>  </div>  </div>
+  <div class="views-row views-row-3 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Jag</a></div>  </div>  </div>
+  <div class="views-row views-row-4 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Kit</a></div>  </div>  </div>
+  <div class="views-row views-row-5 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Mot</a></div>  </div>  </div>
+  <div class="views-row views-row-6 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">LND</a></div>  </div>  </div>
+  <div class="views-row views-row-7 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Karr</a></div>  </div>  </div>
+  <div class="views-row views-row-8 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Icon</a></div>  </div>  </div>
+  <div class="views-row views-row-9 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Mak</a></div>  </div>  </div>
+  <div class="views-row views-row-10 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Stak</a></div>  </div>  </div>
+  <div class="views-row views-row-11 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">North</a></div>  </div>  </div>
+  <div class="views-row views-row-12 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Ryne</a></div>  </div>  </div>
+  <div class="views-row views-row-13 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Bren</a></div>  </div>  </div>
+  <div class="views-row views-row-14 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Lux</a></div>  </div>  </div>
+  <div class="views-row views-row-15 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Arlo</a></div>  </div>  </div>
+  <div class="views-row views-row-16 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Rubik V2</a></div>  </div>  </div>
+  <div class="views-row views-row-17 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Eko</a></div>  </div>  </div>
+  <div class="views-row views-row-18 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Dax</a></div>  </div>  </div>
+  <div class="views-row views-row-19 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Pipeline</a></div>  </div>  </div>
+  <div class="views-row views-row-20 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Saren</a></div>  </div>  </div>
+  <div class="views-row views-row-21 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Focal</a></div>  </div>  </div>
+  <div class="views-row views-row-22 views-row-even m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Rubik</a></div>  </div>  </div>
+  <div class="views-row views-row-23 views-row-odd m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Air</a></div>  </div>  </div>
+  <div class="views-row views-row-24 views-row-even views-row-last m-a-0">
+      
+  <div class="views-field views-field-title">        <div class="field-content h4"><a href="">Cobi</a></div>  </div>  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>  </div>
+
+  </div>
+  </div>
+  <div class="col-xs-12 col-sm-4 text-center"><a href="/"><img aria-label="" alt=".com Logo" class="m-t-2" style="width:80px;" src="/sites/all/themes/relaz/rela-logo-white-small-bright.png"></a></div>
+  <div class="col-xs-12 col-sm-4 text-right"><a class="m-t-2 btn use-ajax overlay-trigger btn-start-with btn btn-default" href="/relajax/nojs/users/quick-reg?rela_session=1&rela_session_start_template=kit">Start with this Theme</a></div>
+  </div>
+  </div>
+  </div>
+    <div class="region region-page-bottom">
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="rela-ps-cta-wrap">
+        <div class="pswp-custom-button pswp-custom-button--playpause pswp-custom-button--cta-center text-center" title="Play Slideshow"><i class="fa m-r-1 fa-play"></i>Slideshow</div>
+        <div class="hidden-xs pswp-custom-button pswp-custom-button--photogrid pswp-custom-button--cta-center" title="Photo Grid"><i class="fa m-r-1 fa-th"></i>Photo Grid</div>
+    </div>
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- custom slideshow button: -->
+
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader. active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div id="ajax-content-overlay"><div class="overlay-header"><span class="overlay-close pe-7s-close-circle"></span></div>
+    <div class="overlay-content"></div><div id="overlay-content-static"></div></div><div id="pspw-gallery-thumbs" data-thumbs-id="property_thumbs-83661131">
+  <div id="pspw-close-thumbs" class="text-left p-l-4" style="cursor:pointer"><i class="fa fa-chevron-down"></i> Hide</div>
+  <div class="inner">
+      <div class="thumb" data="ps-goto" data-pid="0">
+     <div class="views-grid-count"> 1 </div>
+      <img class="img-responsive"  src="./assets/images/adobestock_272168413.jpeg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="1">
+     <div class="views-grid-count"> 2 </div>
+      <img class="img-responsive"  src="./assets/images/light_int_adobestock_451880784.jpeg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="2">
+     <div class="views-grid-count"> 3 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="3">
+     <div class="views-grid-count"> 4 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="4">
+     <div class="views-grid-count"> 5 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="5">
+     <div class="views-grid-count"> 6 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="6">
+     <div class="views-grid-count"> 7 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="7">
+     <div class="views-grid-count"> 8 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="8">
+     <div class="views-grid-count"> 9 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="9">
+     <div class="views-grid-count"> 10 </div>
+      <img class="img-responsive"  src="./assets/images/adobestock_178798998.jpg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="10">
+     <div class="views-grid-count"> 11 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="11">
+     <div class="views-grid-count"> 12 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="12">
+     <div class="views-grid-count"> 13 </div>
+      <img class="img-responsive"  src="./assets/images/adobestock_178800354.jpg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="13">
+     <div class="views-grid-count"> 14 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="14">
+     <div class="views-grid-count"> 15 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="15">
+     <div class="views-grid-count"> 16 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="16">
+     <div class="views-grid-count"> 17 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="17">
+     <div class="views-grid-count"> 18 </div>
+      <img class="img-responsive"  src="./assets/images/apartment-bed-bedroom-book-shelves-439227.jpg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="18">
+     <div class="views-grid-count"> 19 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="19">
+     <div class="views-grid-count"> 20 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="20">
+     <div class="views-grid-count"> 21 </div>
+      <img class="img-responsive"  src="./assets/images/bathroom-interior-1457847.jpg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="21">
+     <div class="views-grid-count"> 22 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="22">
+     <div class="views-grid-count"> 23 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="23">
+     <div class="views-grid-count"> 24 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="24">
+     <div class="views-grid-count"> 25 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="25">
+     <div class="views-grid-count"> 26 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="26">
+     <div class="views-grid-count"> 27 </div>
+      <img class="img-responsive"  src="./assets/images/apartment-bed-bedroom-comfort-545034.jpg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="27">
+     <div class="views-grid-count"> 28 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="28">
+     <div class="views-grid-count"> 29 </div>
+      <img class="img-responsive"  src="./assets/images/pexels-pixabay-259962.jpg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="29">
+     <div class="views-grid-count"> 30 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="30">
+     <div class="views-grid-count"> 31 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="31">
+     <div class="views-grid-count"> 32 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="32">
+     <div class="views-grid-count"> 33 </div>
+      <img class="img-responsive"  src="./assets/images/adobestock_343381345.jpeg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="33">
+     <div class="views-grid-count"> 34 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="34">
+     <div class="views-grid-count"> 35 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="35">
+     <div class="views-grid-count"> 36 </div>
+      <img class="img-responsive"  src="./assets/images/ralph-kayden-2d4laqalbda-unsplash.jpg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="36">
+     <div class="views-grid-count"> 37 </div>
+      <img class="img-responsive"  src="./assets/images/light_int_adobestock_451880778.jpeg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="37">
+     <div class="views-grid-count"> 38 </div>
+      <img class="img-responsive"  src="./assets/images/pexels-terry-magallanes-2635038.jpg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="38">
+     <div class="views-grid-count"> 39 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="39">
+     <div class="views-grid-count"> 40 </div>
+      <img class="img-responsive"  src="./assets/images/light_int_adobestock_451880777.jpeg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="40">
+     <div class="views-grid-count"> 41 </div>
+      <img class="img-responsive"  src="./assets/images/pexels-patryk-kamenczak-775219.jpg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="41">
+     <div class="views-grid-count"> 42 </div>
+      <img class="img-responsive"  src="./assets/images/adobestock_309881545.jpeg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="42">
+     <div class="views-grid-count"> 43 </div>
+      <img class="img-responsive"  src="./assets/images/light_int_adobestock_451880787.jpeg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="43">
+     <div class="views-grid-count"> 44 </div>
+      <img class="img-responsive"  src="./assets/images/pexels-burst-545012.jpg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="44">
+     <div class="views-grid-count"> 45 </div>
+      <img class="img-responsive"  src="./assets/images/adobestock_362895562.jpeg">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="45">
+     <div class="views-grid-count"> 46 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="46">
+     <div class="views-grid-count"> 47 </div>
+      <img class="img-responsive"  src="">
+    </div>
+      <div class="thumb" data="ps-goto" data-pid="47">
+     <div class="views-grid-count"> 48 </div>
+      <img class="img-responsive"  src="./assets/images/pexels-expect-best-323781.jpg">
+    </div>
+  </div>
+</div>
+<div id="right-edit-overlay" class="">
+  <div class="overlay-header container-fluid">
+    <div class="row">
+      <div class="col-xs-10"><div class="overlay-title text-left">Loading...</div></div>
+      <div class="col-xs-2 text-right"><button type="button" class="close right-overlay-close" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+    </div>
+  </div>
+  <div class="overlay-inner">
+    
+<!-- Footer -->
+<footer style="background: #123149; color: white; padding: 40px 0; text-align: center;">
+  <div class="container">
+    <p>&copy; 2024 Property Showcase. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="mortgage-calculator.js"></script>
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
